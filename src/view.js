@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const environment = require('./environment');
 const ejs = require('ejs');
 
@@ -25,22 +26,26 @@ class View {
   }
 
   _load(view) {
-    const appFilePath = path.join(environment.APP_PATH, 'views', `${view}${environment.VIEW_EXT}`);
-    const sysFilePath = path.join(environment.SYS_PATH, 'views', `${view}${environment.VIEW_EXT}`);
+    const appFilePath = path.join(__dirname, environment.APP_PATH, 'views', `${view}${environment.VIEW_EXT}`);
+    const sysFilePath = path.join(__dirname, environment.SYS_PATH, 'views', `${view}${environment.VIEW_EXT}`);
     let string;
 
     if (fs.existsSync(appFilePath)) {
-      string = fs.readFileSync(appFilePath);
+      string = fs.readFileSync(appFilePath, 'utf-8');
     }
 
     if (fs.existsSync(sysFilePath)) {
-      string = fs.readFileSync(sysFilePath);
+      string = fs.readFileSync(sysFilePath, 'utf-8');
     }
 
     if (!string) {
+      console.log(appFilePath);
+      console.log(sysFilePath);
       throw new Error(`View [${view}] doesn't exist`);
     }
 
-    return ejs.render(string, this.data);
+    return ejs.render(string);
   }
 }
+
+module.exports = View;

@@ -8,7 +8,13 @@ const Response = require('./response');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.all('/', (req, res) => {
+app.use((req, res, next) => {
+  console.log(req.method, req.path);
+
+  next();
+});
+
+app.all('*', (req, res) => {
   const route = Router.route(req.method, req.path); 
   let response;
 

@@ -19,6 +19,10 @@ class Response {
 	}
 
 	send(res) {
+    if (this.content instanceof View) {
+      return res.send(this.content.content);
+    }
+
     res.send(this.content);
 	}
 }
