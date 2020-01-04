@@ -16,12 +16,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.all('*', (req, res) => {
+app.all('*', async (req, res) => {
   const route = Router.route(req.method, req.path); 
   let response;
 
   if (route) {
-    response = route.call();
+    response = await route.call();
   } else {
     response = Response.view('error/404', 404);
   }

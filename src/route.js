@@ -6,11 +6,11 @@ class Route {
     this.parameters = parameters;
   }
 
-  call() {
+  async call() {
     let response = null;
 
     if (typeof this.route === 'function') {
-      response = this.route.call(this.parameters);
+      response = await this.route.call(this.parameters);
     } else if (typeof this.route === 'object') {
 			// --------------------------------------------------------------
 			// Call the "before" route filters.

@@ -2,8 +2,10 @@ const User = require('./models/user');
 const View = require('../src/view');
 
 module.exports = {
-  'GET /': () => {
-    const user = User.find(2);
+  'GET /': async () => {
+    const user = await User.find(2);
+
+    console.log(user);
 
     return View.make('home/index', {
       userId: user.id,

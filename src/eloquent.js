@@ -20,16 +20,27 @@ class Eloquent {
   async first() {
     const results = await Hydrate.from(this.take(1));
 
-    if (results.length > 1) {
+    console.log({
+      firstResults: results,
+    });
+
+    if (results.length >= 1) {
       return results[0];
     }
   }
 
-  static find(id) {
-    return Factory
+  static async find(id) {
+    const build = Factory
       .make(this.prototype.constructor)
       .where('id', '=', id)
-      .first();
+
+    const result = await build.first();
+
+    console.log({
+      findResult: result,
+    });
+
+    return result;
   }
 }
 
