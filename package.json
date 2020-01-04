@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Devin Riegle <riegledevin@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "node ./src"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "ejs": "^3.0.1",
