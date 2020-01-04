@@ -4,6 +4,7 @@ const environment = require('./environment');
 
 class Router {
   constructor() {
+    console.log(environment.APP_PATH);
     this.routes = require(path.join(environment.APP_PATH, `routes${environment.EXT}`));
   }
 

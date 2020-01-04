@@ -58,7 +58,7 @@ class Config {
 		// ---------------------------------------------
 		// Get the key segments.
 		// ---------------------------------------------
-    segments = key.split('.');
+    const segments = key.split('.');
 
 		// ---------------------------------------------
 		// Validate the key format.
@@ -93,6 +93,8 @@ class Config {
 		// ---------------------------------------------
     const filePath = path.join(environment.APP_PATH, 'config', `${file}${environment.EXT}`);
 
+    console.log(filePath);
+
     if (!fs.existsSync(filePath)) {
 			throw new Error(`Configuration file [${file}] does not exist.`);
 		}
@@ -103,3 +105,5 @@ class Config {
     this.items[file] = require(filePath);
 	}
 }
+
+module.exports = new Config();

@@ -5,7 +5,9 @@ class Factory {
   static make(klass) {
     const model = new klass;
 
-    model.query = Query.table(Meta.table(klass));
+    model.query = Query.table(Meta.table(klass.name));
+
+    return model;
   }
 }
 

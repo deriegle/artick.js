@@ -3,7 +3,7 @@ const View = require('../src/view');
 
 module.exports = {
   'GET /': () => {
-    // const user = User.find(1);
+    const user = User.find(1);
 
     return View.make('home/index', {
       userId: 1,
