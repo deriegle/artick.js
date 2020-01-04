@@ -87,10 +87,6 @@ class Inflector {
   }
 
   plural(value) {
-    console.log({
-      message: `Trying to pluralize: ${value}`
-    });
-
     if (this.pluralCache[value]) {
       return this.pluralCache[value];
     }
@@ -102,7 +98,7 @@ class Inflector {
     }
 
     for (const [pattern, irregular] of Object.entries(IRREGULAR)) {
-      const regex = new RegExp(`/${pattern}/i`);
+      const regex = new RegExp(`${pattern}i`);
 
       if (value.match(regex)) {
         this.pluralCache[value] = value.replace(regex, irregular);
