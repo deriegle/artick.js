@@ -93,8 +93,6 @@ class Config {
 		// ---------------------------------------------
     const filePath = path.join(environment.APP_PATH, 'config', `${file}${environment.EXT}`);
 
-    console.log(filePath);
-
     if (!fs.existsSync(filePath)) {
 			throw new Error(`Configuration file [${file}] does not exist.`);
 		}

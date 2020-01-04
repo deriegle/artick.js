@@ -4,26 +4,21 @@ const Hydrate = require('./db/hydrate');
 class Eloquent {
   constructor() {
     this.query = null;
-
-    return new Proxy(this, {
-      get: (target, objectKey) => {
-        if (target.hasOwnProperty(objectKey)) {
-          return target[objectKey];
-        }
-
-        console.log(target.query);
-
-        if (target.query && target.query.hasOwnProperty(objectKey)) {
-          return target.query[objectKey];
-        }
-
-        throw new Error(`Could not find [${objectKey}] on ${target}`);
-      },
-    });
+    this.includes = [];
   }
 
-  _first() {
-    const results = Hydrate.from(this.take(1));
+  where() {
+    this.query.where(...arguments);
+    return this;
+  }
+
+  take(limit) {
+    this.query.limit(limit);
+    return this;
+  }
+
+  async first() {
+    const results = await Hydrate.from(this.take(1));
 
     if (results.length > 1) {
       return results[0];

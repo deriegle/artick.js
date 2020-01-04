@@ -1,10 +1,11 @@
 const Meta = require('./meta');
 
 class Hydrate {
-  static from(eloquent) {
-    const results = Hydrate.base(eloquent.constructor.name, eloquent.query.get());
+  static async from(eloquent) {
+    const models = await eloquent.query;
+    const results = Hydrate.base(eloquent.constructor, models);
 
-    if (results.length > 0) {
+    if (Object.keys(results).length > 0) {
       eloquent.includes.forEach((include) => {
         if (eloquent[include] === undefined) {
           throw new Error(`Attempting to eager load include [${include}], but the relationship is not defined.`);
@@ -17,11 +18,12 @@ class Hydrate {
     return results;
   }
 
-  static base(klass, models) {
+  static base(klass, models = []) {
     const results = {};
 
     models.forEach((model) => {
-      const result = new klass;
+      const result = new klass();
+      result.id = model.id;
       result.attributes = model;
       result.exists = true;
       results[result.id] = result;
