@@ -7,11 +7,10 @@ class Router {
     this.routes = require(path.join(environment.APP_PATH, `routes${environment.EXT}`));
   }
 
-  route(method, path) {
-    const uri = path !== '/' ? `/${path}` : path;
+  route(method, uri) {
     const methodPath = `${method} ${uri}`;
 
-    if (typeof this.routes[`${method} ${uri}`] === 'function') {
+    if (typeof this.routes[methodPath] === 'function') {
       return new Route(this.routes[methodPath]);
     }
 

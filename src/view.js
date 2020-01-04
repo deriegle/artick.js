@@ -39,12 +39,10 @@ class View {
     }
 
     if (!string) {
-      console.log(appFilePath);
-      console.log(sysFilePath);
       throw new Error(`View [${view}] doesn't exist`);
     }
 
-    return ejs.render(string);
+    return ejs.render(string, this.data);
   }
 }
 
