@@ -26,8 +26,8 @@ class View {
   }
 
   _load(view) {
-    const appFilePath = path.join(__dirname, environment.APP_PATH, 'views', `${view}${environment.VIEW_EXT}`);
-    const sysFilePath = path.join(__dirname, environment.SYS_PATH, 'views', `${view}${environment.VIEW_EXT}`);
+    const appFilePath = path.join(environment.APP_PATH, 'views', `${view}${environment.VIEW_EXT}`);
+    const sysFilePath = path.join(environment.SYS_PATH, 'views', `${view}${environment.VIEW_EXT}`);
     let string;
 
     if (fs.existsSync(appFilePath)) {

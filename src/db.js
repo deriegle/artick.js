@@ -11,7 +11,7 @@ function getKnexConfig() {
   if (defaultDatabaseClient === 'sqlite3') {
     const database = connection.database;
 
-    connection.filename = `./${database}.sqlite`;
+    connection.filename = `./${database}.sqlite3`;
   }
 
   delete connection.database;
@@ -19,6 +19,7 @@ function getKnexConfig() {
   return {
     client: defaultDatabaseClient,
     connection,
+    useNullAsDefault: true,
   };
 }
 
