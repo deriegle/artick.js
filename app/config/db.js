@@ -3,7 +3,7 @@ module.exports = {
   connections: {
     sqlite3: {
       driver: 'sqlite3',
-      database: 'application',
+      filename: './dev.sqlite3',
     },
     mysql: {
       driver: 'mysql',

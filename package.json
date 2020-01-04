@@ -5,7 +5,8 @@
   "author": "Devin Riegle <riegledevin@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node --harmony ./src"
+    "start": "node --harmony ./src",
+    "knex": "knex"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
