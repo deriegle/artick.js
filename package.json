@@ -5,7 +5,9 @@
   "author": "Devin Riegle <riegledevin@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "ejs": "^3.0.1",
+    "express": "^4.17.1",
     "fs": "^0.0.1-security",
     "knex": "^0.20.6",
     "mssql": "^6.0.1",

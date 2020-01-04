@@ -1,4 +1,5 @@
 const fs = require('fs');
+const ejs = require('ejs');
 
 class View {
   constructor(view, data = {}) {
@@ -23,17 +24,22 @@ class View {
   }
 
   _load(view) {
-    const appFilePath = path.join(global.APP_PATH, 'views', `${view}${global.EXT}`);
-    const sysFilePath = path.join(global.SYS_PATH, 'views', `${view}${global.EXT}`);
+    const appFilePath = path.join(global.APP_PATH, 'views', `${view}${global.VIEW_EXT}`);
+    const sysFilePath = path.join(global.SYS_PATH, 'views', `${view}${global.VIEW_EXT}`);
+    let string;
 
     if (fs.existsSync(appFilePath)) {
-      return fs.readFileSync(appFilePath);
+      string = fs.readFileSync(appFilePath);
     }
 
     if (fs.existsSync(sysFilePath)) {
-      return fs.readFileSync(sysFilePath);
+      string = fs.readFileSync(sysFilePath);
     }
 
-    throw new Error(`View [${view}] doesn't exist`);
+    if (!string) {
+      throw new Error(`View [${view}] doesn't exist`);
+    }
+
+    return ejs.render(string, this.data);
   }
 }
