@@ -5,7 +5,7 @@
   "author": "Devin Riegle <riegledevin@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node --harmony_proxies ./src"
+    "start": "node --harmony ./src"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
