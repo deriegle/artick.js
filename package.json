@@ -1,0 +1,15 @@
+{
+  "name": "artick",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Devin Riegle <riegledevin@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "knex": "^0.20.6",
+    "mssql": "^6.0.1",
+    "mysql": "^2.17.1",
+    "mysql2": "^2.1.0",
+    "pg": "^7.17.0",
+    "sqlite3": "^4.1.1"
+  }
+}
