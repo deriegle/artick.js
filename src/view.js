@@ -1,4 +1,5 @@
 const fs = require('fs');
+const environment = require('./environment');
 const ejs = require('ejs');
 
 class View {
@@ -24,8 +25,8 @@ class View {
   }
 
   _load(view) {
-    const appFilePath = path.join(global.APP_PATH, 'views', `${view}${global.VIEW_EXT}`);
-    const sysFilePath = path.join(global.SYS_PATH, 'views', `${view}${global.VIEW_EXT}`);
+    const appFilePath = path.join(environment.APP_PATH, 'views', `${view}${environment.VIEW_EXT}`);
+    const sysFilePath = path.join(environment.SYS_PATH, 'views', `${view}${environment.VIEW_EXT}`);
     let string;
 
     if (fs.existsSync(appFilePath)) {

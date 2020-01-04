@@ -1,4 +1,5 @@
 const path = require('path');
+const environment = require('./environment');
 const fs = require('fs');
 
 class Config {
@@ -13,14 +14,14 @@ class Config {
 		// ---------------------------------------------
 		// Parse the configuration key.
 		// ---------------------------------------------
-    const [file, key] = this.parse(key);
+    const [file, configKey] = this.parse(key);
 
 		// ---------------------------------------------
 		// Load the configuration file.
 		// ---------------------------------------------
     this.load(file);
 
-    return this.items[file][key];
+    return this.items[file][configKey];
 	}
 
 	/**
@@ -34,7 +35,7 @@ class Config {
 		// ---------------------------------------------
 		// Parse the configuration key.
 		// ---------------------------------------------
-		const [file] = this.parse(key);
+		const [file, configKey] = this.parse(key);
 
 		// ---------------------------------------------
 		// Load the configuration file.
@@ -44,7 +45,7 @@ class Config {
 		// ---------------------------------------------
 		// Set the item's value.
 		// ---------------------------------------------
-    this.items[file][key] = value;
+    this.items[file][configKey] = value;
 	}
 
 	/**
@@ -90,7 +91,7 @@ class Config {
 		// ---------------------------------------------
 		// Verify that the configuration file exists.
 		// ---------------------------------------------
-    const filePath = path.join(global.APP_PATH, 'config', `${file}${global.EXT}`);
+    const filePath = path.join(environment.APP_PATH, 'config', `${file}${environment.EXT}`);
 
     if (!fs.existsSync(filePath)) {
 			throw new Error(`Configuration file [${file}] does not exist.`);

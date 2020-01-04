@@ -1,9 +1,10 @@
 const path = require('path');
 const Route = require('./route');
+const environment = require('./environment');
 
 class Router {
   constructor() {
-    this.routes = require(path.join(global.APP, `routes${global.EXT}`));
+    this.routes = require(path.join(environment.APP, `routes${environment.EXT}`));
   }
 
   route(method, path) {
