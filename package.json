@@ -5,6 +5,7 @@
   "author": "Devin Riegle <riegledevin@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "ejs": "^3.0.1",
     "fs": "^0.0.1-security",
     "knex": "^0.20.6",
     "mssql": "^6.0.1",
