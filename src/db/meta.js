@@ -7,3 +7,5 @@ class Meta {
       : Inflector.plural(klass).toLowerCase();
 	}
 }
+
+module.exports = Meta;

@@ -9,13 +9,13 @@ class BaseModel {
 	 * The model attributes.
 	 * @var array
 	 */
-    this.attributes = [];
+    this.attributes = {};
 	/**
 	 * The model's dirty attributes.
 	 *
 	 * @var array
 	 */
-    this.dirty = [];
+    this.dirty = {};
 	/**
 	 * The model's ignored attributes.
 	 *
@@ -156,9 +156,8 @@ class BaseModel {
 	 * @param  string  $model
 	 * @return mixed
 	 */
-	public function has_many_and_belongs_to($model)
-	{
-		return Eloquent\Relate::has_many_and_belongs_to($model, $this);
+	hasManyAndBelongsTo(model) {
+		return Relate.hasManyAndBelongsTo(model, this);
 	}
 
 	/**
@@ -166,9 +165,8 @@ class BaseModel {
 	 *
 	 * @return void
 	 */
-	public function save()
-	{
-		Eloquent\Warehouse::store($this);
+	save() {
+		Warehouse.store(this);
 	}
 
 	/**
