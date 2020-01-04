@@ -1,4 +1,5 @@
 const Factory = require('./db/factory');
+const Hydrate = require('./db/hydrate');
 
 class Eloquent {
   constructor() {
@@ -19,6 +20,14 @@ class Eloquent {
         throw new Error(`Could not find [${objectKey}] on ${target}`);
       },
     });
+  }
+
+  _first() {
+    const results = Hydrate.from(this.take(1));
+
+    if (results.length > 1) {
+      return results[0];
+    }
   }
 
   static find(id) {

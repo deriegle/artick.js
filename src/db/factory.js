@@ -7,8 +7,6 @@ class Factory {
 
     const tableName = Meta.table(klass);
 
-    console.log(`CREATING NEW QUERY FOR TABLE: ${tableName}`);
-
     model.query = Query(tableName);
 
     return model;

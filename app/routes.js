@@ -3,10 +3,10 @@ const View = require('../src/view');
 
 module.exports = {
   'GET /': () => {
-    const user = User.find(1);
+    const user = User.find(2);
 
     return View.make('home/index', {
-      userId: 1,
+      userId: user.id,
     });
   },
   'GET /help': () => View.make('help/index'),
