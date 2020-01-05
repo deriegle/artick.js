@@ -5,11 +5,6 @@ class Hydrate {
     const models = await eloquent.query;
     const results = Hydrate.base(eloquent.constructor, models);
 
-    console.log({
-      models,
-      results,
-    });
-
     /*if (results.length > 0) {
       eloquent.includes.forEach((include) => {
         if (eloquent[include] === undefined) {
@@ -28,7 +23,6 @@ class Hydrate {
 
     models.forEach((model) => {
       const result = new klass();
-      result.id = model.id;
       result.attributes = model;
       result.exists = true;
       results.push(result);

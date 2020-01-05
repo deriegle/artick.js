@@ -5,6 +5,17 @@ class Eloquent {
   constructor() {
     this.query = null;
     this.includes = [];
+    this.attributes = {};
+
+    return new Proxy(this, {
+      get: (target, key, receiver)  => {
+        if (Object.keys(target.attributes).includes(key.toLowerCase())) {
+          return target.attributes[key];
+        }
+
+        return target[key];
+      },
+    });
   }
 
   where() {
