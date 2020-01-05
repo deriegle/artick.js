@@ -7,7 +7,7 @@ describe('Inflector', () => {
       expect(Inflector.plural('foot')).toBe('feet');
       expect(Inflector.plural('child')).toBe('children');
       expect(Inflector.plural('user')).toBe('users');
-      //expect(Inflector.plural('account')).toBe('accounts');
+      expect(Inflector.plural('account')).toBe('accounts');
     });
   });
 
