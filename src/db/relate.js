@@ -47,3 +47,5 @@ class Relate {
       .where(eloquent.relatingKey, '=', eloquent.id);
   }
 }
+
+module.exports = Relate;
