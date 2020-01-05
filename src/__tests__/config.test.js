@@ -8,9 +8,11 @@ jest.mock('../../app/config/db', () => ({
 }));
 
 describe('Config', () => {
+  beforeEach(() => fs.existsSync.mockReset());
+
   describe('get', () => {
     it('works', () => {
-      fs.existsSync.mockImplementation(() => true);
+      fs.existsSync.mockReturnValue(true);
 
       const defaultDb = Config.get('db.default');
 
@@ -19,6 +21,14 @@ describe('Config', () => {
 
     it('throws an error when given an invalid key', () => {
       expect(() => Config.get('db')).toThrow('Invalid configuration key [db]');
+    });
+
+    it('when the config file does not exist', () => {
+      expect(() => {
+        fs.existsSync.mockReturnValue(false);
+
+        Config.get('db.default')
+      }).toThrow('Configuration file [db] does not exist.');
     });
   });
 
@@ -37,6 +47,14 @@ describe('Config', () => {
 
     it('throws an error when given an invalid key', () => {
       expect(() => Config.set('db', 'postgres')).toThrow('Invalid configuration key [db]');
+    });
+
+    it('when the config file does not exist', () => {
+      expect(() => {
+        fs.existsSync.mockReturnValue(false);
+
+        Config.set('db.default', 'postgres');
+      }).toThrow('Configuration file [db] does not exist.');
     });
   });
 });
