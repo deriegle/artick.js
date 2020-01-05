@@ -9,7 +9,7 @@ class Eloquent {
 
     return new Proxy(this, {
       get: (target, key, receiver)  => {
-        if (Object.keys(target.attributes).includes(key.toLowerCase())) {
+        if (Object.keys(target.attributes).includes(key)) {
           return target.attributes[key];
         }
 
