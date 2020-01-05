@@ -5,10 +5,8 @@ module.exports = {
   'GET /': async () => {
     const user = await User.find(2);
 
-    console.log(user);
-
     return View.make('home/index', {
-      userId: user.id,
+      user,
     });
   },
   'GET /help': () => View.make('help/index'),
